@@ -44,7 +44,7 @@ export const filterAffairs = (
   if (filter === "all") {
     return affairs;
   } else {
-    return affairs.filter((f) => f.priority !== filter); // need to fix
+    return affairs.filter((f) => f.priority === filter); // need to fix
   }
 };
 export const deleteAffair = (
