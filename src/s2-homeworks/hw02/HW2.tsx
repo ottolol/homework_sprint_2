@@ -52,8 +52,7 @@ export const deleteAffair = (
   _id: number
 ): AffairType[] => {
   // need to fix any
-
-  return affairs; // need to fix
+  return affairs.filter((f) => f._id !== _id); // need to fix
 };
 
 function HW2() {
