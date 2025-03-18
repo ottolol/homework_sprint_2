@@ -8,11 +8,15 @@
     border: none;
 
     cursor: pointer;
+
+    color: #fff;
+    background-color: #0066CC;
 }
 
 .disabled {
+    opacity: 0.5;
     color: #002E5C;
-    background-color: #004D99
+    background-color: #004D99;
 }
 
 .secondary {
