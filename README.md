@@ -1,4 +1,4 @@
-# Домашка - Спринт 2 (1-4). Спринт 3 (5-).
+# Домашка - Спринт 2 (1-4). Спринт 3 (5-8). Спринт 4 (9-)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
