@@ -1,3 +1,23 @@
 .loader {
-    /*свг и/или анимация*/
+  /*свг и/или анимация*/
+  animation: spin-gradient 2s linear infinite;
+
+  background-image: url("/public/Loading.svg");
+  width: 108px;
+  height: 108px;
+
+  background-size: cover; /* Растягиваем SVG на весь элемент */
+  background-repeat: no-repeat; /* Запрещаем повторение фона */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes spin-gradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
