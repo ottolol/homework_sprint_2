@@ -3,7 +3,7 @@
 }
 
 .developer {
-
+    display: flex;
 }
 
 .techHeader {
@@ -11,7 +11,7 @@
 }
 
 .developerHeader {
-
+    
 }
 
 .row {

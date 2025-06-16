@@ -52,22 +52,30 @@ const HW15 = () => {
         getTechs(params)
             .then((res) => {
                 // делает студент
-
                 // сохранить пришедшие данные
-
+                if (res?.data?.techs) {
+                    setTechs(res.data.techs);
+                }
+                setLoading(false);
                 //
             })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
+        // Обновляем текущую страницу
+        setPage(newPage)
 
-        // setPage(
-        // setCount(
+        // Если меняется количество элементов на странице — сбрасываем на первую
+        if (newCount !== count) {
+            setCount(newCount)
+        }
 
         // sendQuery(
-        // setSearchParams(
-
+        setSearchParams({
+            page: String(newPage),
+            count: String(newCount),
+        })
         //
     }
 
