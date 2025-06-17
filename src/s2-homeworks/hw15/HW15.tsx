@@ -5,6 +5,7 @@ import axios from 'axios'
 import SuperPagination from './common/c9-SuperPagination/SuperPagination'
 import {useSearchParams} from 'react-router-dom'
 import SuperSort from './common/c10-SuperSort/SuperSort'
+import { Loader } from "../hw10/Loader";
 
 /*
 * 1 - дописать SuperPagination
@@ -54,49 +55,63 @@ const HW15 = () => {
                 // делает студент
                 // сохранить пришедшие данные
                 if (res?.data?.techs) {
-                    setTechs(res.data.techs);
+                    setTechs(res.data.techs)
+                    setTotalCount(res.data.totalCount)
                 }
                 setLoading(false);
                 //
             })
+            .catch(() => {
+                // обработка ошибок уже в catch, поэтому здесь можно оставить пустым или логировать
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
-        // делает студент
-        // Обновляем текущую страницу
-        setPage(newPage)
+        const params = Object.fromEntries(searchParams)
 
-        // Если меняется количество элементов на странице — сбрасываем на первую
-        if (newCount !== count) {
-            setCount(newCount)
-        }
-
-        // sendQuery(
-        setSearchParams({
+        const updatedParams: any = {
+            ...params,
             page: String(newPage),
             count: String(newCount),
-        })
-        //
+        }
+
+        setSearchParams(updatedParams)
+        setPage(newPage)
+        setCount(newCount)
+
+        sendQuery({ ...updatedParams, page: newPage, count: newCount })
     }
 
     const onChangeSort = (newSort: string) => {
-        // делает студент
+        const params = Object.fromEntries(searchParams)
 
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
+        const updatedParams: any = {
+            ...params,
+            sort: newSort,
+            page: '1', // при изменении сортировки всегда переходим на первую страницу
+        }
 
-        // sendQuery(
-        // setSearchParams(
+        setSearchParams(updatedParams)
+        setSort(newSort)
+        setPage(1)
 
-        //
+        sendQuery({ ...updatedParams, sort: newSort, page: 1 })
     }
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        sendQuery({page: params.page, count: params.count})
-        setPage(+params.page || 1)
-        setCount(+params.count || 4)
-    }, [])
+
+        const { sort: s = '', page: p = '1', count: c = '4' } = params
+
+        setSort(s)
+        setPage(+p)
+        setCount(+c)
+
+        sendQuery({ sort: s, page: +p, count: +c })
+    }, [searchParams])
 
     const mappedTechs = techs.map(t => (
         <div key={t.id} className={s.row}>
@@ -136,7 +151,11 @@ const HW15 = () => {
                     </div>
                 </div>
 
-                {mappedTechs}
+                {idLoading ? (
+                    <Loader />
+                ) : (
+                    mappedTechs
+                )}
             </div>
         </div>
     )

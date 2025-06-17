@@ -35,13 +35,26 @@ const SuperSelect: React.FC<SuperSelectPropsType> = ({
       ))
     : []; // map options with key
 
+  // const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {
+  //   // делают студенты
+  //   // Проверяем, что e.target.value определено
+  //   const value = Number(e.target.value);
+  //   if (value !== undefined && onChangeOption) {
+  //     // Вызываем onChangeOption только если она определена
+  //     onChangeOption(value);
+  //   }
+  // };
   const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {
-    // делают студенты
-    // Проверяем, что e.target.value определено
     const value = Number(e.target.value);
-    if (value !== undefined && onChangeOption) {
-      // Вызываем onChangeOption только если она определена
-      onChangeOption(value);
+
+    // Вызываем стандартный onChange, если он есть
+    if (onChange) {
+        onChange(e);
+    }
+
+    // Вызываем кастомный onChangeOption, если он есть
+    if (onChangeOption && !isNaN(value)) {
+        onChangeOption(value);
     }
   };
 
