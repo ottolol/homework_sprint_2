@@ -35,12 +35,13 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = (
                 id={id + '-pagination'}
                 sx={{
                     '& .MuiPaginationItem-root': {
-                        color: '#333',
+                        color: '#0D0B0C',
                         fontSize: '14px',
+                        borderRadius: '4px',
                     },
                     '& .MuiPaginationItem-page.Mui-selected': {
-                        backgroundColor: '#f0f0f0',
-                        fontWeight: 'bold',
+                        color: '#fff',
+                        backgroundColor: '#0066CC',
                     },
                     // стили для Pagination // пишет студент
                 }}
